@@ -5,7 +5,7 @@ php:
 services:
 - mysql
 before_install:
-- mysql -e 'CREATE DATABSE IF NOT EXISTS v0lt;'
+- mysql -e 'CREATE DATABASE IF NOT EXISTS v0lt;'
 - curl -s http://getcomposer.org/installer | php
 - php composer.phar install -n
 - touch ~/coverage/
