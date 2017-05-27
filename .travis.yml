@@ -9,6 +9,6 @@ before_install:
 - curl -s http://getcomposer.org/installer | php
 - php composer.phar install -n
 - mkdir ~/coverage/
-script: phpunit tests/tests.php --coverage-xml ~/coverage/ --whitelist /tests/
+script: phpunit tests.php --coverage-xml ~/coverage/ --whitelist /tests
 after_script:
 - php vendor/bin/codacycoverage phpunit ~/coverage/
