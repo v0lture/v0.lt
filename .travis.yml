@@ -6,9 +6,4 @@ services:
 - mysql
 before_install:
 - mysql -e 'CREATE DATABASE IF NOT EXISTS v0lt;'
-- curl -s http://getcomposer.org/installer | php
-- php composer.phar install -n
-- mkdir ~/coverage/
-script: phpunit tests.php --coverage-xml ~/coverage/ --whitelist /tests.php
-after_script:
-- php vendor/bin/codacycoverage phpunit ~/coverage/
+script: phpunit tests.php
