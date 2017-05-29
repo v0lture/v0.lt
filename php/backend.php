@@ -2,8 +2,14 @@
 
     class Backend {
 
-        public function cleanText($dbc, $text) {
-            return mysqli_escape_string($dbc, $text);
+        public $dbc;
+
+        public function __construct($dbc){
+            $this->dbc = $dbc;
+        }
+
+        public function cleanText($text) {
+            return mysqli_real_escape_string($this->dbc, $text);
         }
 
     }

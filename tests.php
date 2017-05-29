@@ -8,15 +8,35 @@
 
     class v0ltTest extends TestCase {
 
-        public function testA() {
+        public function testURLs() {
 
-            echo "Creating a shortened link for https://v0lture.com...";
+            echo "\r\n--- 1/2 ---\r\nCreating a shortened link for https://v0lture.com...\r\n";
             $dbc = mysqli_connect("localhost", "travis", "", "v0lt");
 
-            $backend = new Backend();
+            $backend = new Backend($dbc);
             $URL = new URL($backend, $dbc);
 
-            var_dump($URL->create("https://v0lture.com"));
+            $shortened = $URL->create("https://v0lture.com");
+
+            var_dump($shortened);
+
+            // check for errors
+            if($shortened["error"] != null){
+                trigger_error($shortened["error"]["code"].": ".$shortened["error"]["message"], E_USER_ERROR);
+                exit();
+            }
+
+            echo "\r\n--- 2/2 ---\r\nFinding link for ".$shortened["data"]["id"]."...\r\n";
+
+            $longified = $URL->find($shortened["data"]["id"]);
+
+            var_dump($longified);
+
+            // check for errors
+            if($longified["error"] != null){
+                trigger_error($longified["error"]["code"].": ".$longified["error"]["message"], E_USER_ERROR);
+                exit();
+            }
 
         }
 

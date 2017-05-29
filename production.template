@@ -1,0 +1,16 @@
+<?php
+
+    // This is the needed configuration for using v0.lt outside of tests
+    // Duplicate this template, fill in your server details, and rename to production.php
+
+    // Database
+    $dbc = mysqli_connect("host", "username", "password", "database");
+
+    // App configs
+    $app = Array(
+        // this specifics at what URL generated finished short links are prefixed with
+        "url" => "https://yourdomain.xyz"
+    )
+    
+
+?>
