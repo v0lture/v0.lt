@@ -18,14 +18,14 @@
             } else {
 
                 // create ids and submit
-                $id = substr(base64_encode(microtime(true)), 0, 10);
+                $id = base64_encode(microtime(true));
 
                 // check if string
                 if(filter_var($link, FILTER_VALIDATE_URL)) {
 
                     if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`) VALUES (NULL, '".$this->backend->cleanText($id)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."')")){
                         // success on insert
-                        return Array("data" => Array("short" => $this->backend->app["url"].$id, "long" => $link, "id" => $id), "error" => null);
+                        return Array("data" => Array("short" => $this->backend->app["url"]."?".$id, "long" => $link, "id" => $id), "error" => null);
                     } else {
                         // errored on insert
                         return Array("data" => null, "error" => Array("code" => "aero", "message" => $this->dbc->error));
