@@ -27,7 +27,6 @@
             // check for errors
             if($shortened["error"] != null){
                 trigger_error($shortened["error"]["code"].": ".$shortened["error"]["message"], E_USER_ERROR);
-                exit();
             }
 
             echo "\r\n--- 2/2 ---\r\nFinding link for ".$shortened["data"]["id"]."...\r\n";
@@ -39,7 +38,6 @@
             // check for errors
             if($longified["error"] != null){
                 trigger_error($longified["error"]["code"].": ".$longified["error"]["message"], E_USER_ERROR);
-                exit();
             }
 
         }
