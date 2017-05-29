@@ -4,7 +4,9 @@
     require "php/backend.php";
     require "php/URL.php";
 
-    class tests {
+    use PHPUnit\Framework\TestCase;
+
+    class v0ltTest extends TestCase {
 
         public function testA() {
 
