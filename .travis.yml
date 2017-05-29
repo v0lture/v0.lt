@@ -7,4 +7,4 @@ services:
 before_install:
 - mysql -e 'CREATE DATABASE IF NOT EXISTS v0lt;'
 - mysql -e 'CREATE TABLE `v0lt`.`links` (`id` int(11) not null auto_increment, `short` varchar(10), `long` varchar(1000), primary key(`id`)) engine=InnoDB default charset=latin1;'
-script: php tests.php
+script: phpunit tests.php
