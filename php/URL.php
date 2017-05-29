@@ -1,8 +1,5 @@
 <?php
 
-    require "../production.php";
-    global $app;
-
     class URL {
 
         private $dbc;

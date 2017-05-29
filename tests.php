@@ -13,8 +13,12 @@
             echo "\r\n--- 1/2 ---\r\nCreating a shortened link for https://v0lture.com...\r\n";
             $dbc = mysqli_connect("localhost", "travis", "", "v0lt");
 
-            $backend = new Backend($dbc);
-            $URL = new URL($backend, $dbc);
+            $app = Array(
+                "url" => "travis://v0.lt/"
+            );
+
+            $backend = new Backend($app, $dbc);
+            $URL = new URL($backend);
 
             $shortened = $URL->create("https://v0lture.com");
 
