@@ -18,7 +18,7 @@
             } else {
 
                 // create ids and submit
-                $id = base64_encode(microtime(true));
+                $id = base64_encode(substr(hash("sha256", microtime(true)), 0, 10));
 
                 // check if string
                 if(filter_var($link, FILTER_VALIDATE_URL)) {
