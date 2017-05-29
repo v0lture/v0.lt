@@ -3,9 +3,11 @@
     class Backend {
 
         public $dbc;
+        public $app;
 
-        public function __construct($dbc){
+        public function __construct($config, $dbc){
             $this->dbc = $dbc;
+            $this->app = $config;
         }
 
         public function cleanText($text) {

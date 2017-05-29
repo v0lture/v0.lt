@@ -1,12 +1,15 @@
 <?php
 
+    require "../production.php";
+    global $app;
+
     class URL {
 
         private $dbc;
         private $backend;
 
-        public function __construct($backend, $dbc){
-            $this->dbc = $dbc;
+        public function __construct($backend){
+            $this->dbc = $backend->dbc;
             $this->backend = $backend;
         }
 
@@ -25,7 +28,7 @@
 
                     if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`) VALUES (NULL, '".$this->backend->cleanText($id)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."')")){
                         // success on insert
-                        return Array("data" => Array("short" => "https://v0.lt/l.php?id=".$id, "long" => $link, "id" => $id), "error" => null);
+                        return Array("data" => Array("short" => $this->backend->app["url"].$id, "long" => $link, "id" => $id), "error" => null);
                     } else {
                         // errored on insert
                         return Array("data" => null, "error" => Array("code" => "aero", "message" => $this->dbc->error));

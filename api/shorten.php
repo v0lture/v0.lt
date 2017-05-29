@@ -1,13 +1,16 @@
 <?php
 
+    error_reporting(E_ALL);
+
     require "../production.php"; // Refer to production.template for information on setting this file up.
     require "../php/backend.php";
     require "../php/URL.php";
 
     global $dbc;
+    global $app;
 
-    $backend = new Backend($dbc);
-    $URL = new URL($backend, $dbc);
+    $backend = new Backend($app, $dbc);
+    $URL = new URL($backend);
 
     // determine mode
     if(isset($_GET["create"])) {
