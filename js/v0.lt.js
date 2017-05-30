@@ -13,7 +13,7 @@ function shorten() {
 
                 var data = d[0];
                 if(data.error === null){
-                    $("#shorten-finished > p").html("Your short link for <code>"+link+"</code> is ready and can be used with <code>"+data.data.short+"</code>.");
+                    $("#shorten-finished > p").html("Your short link for <code>"+link+"</code> is ready.<br /><code>"+data.data.short+"</code>");
                 } else {
                     $("#shorten-finished > p").html("Failed to create short link. <br />Code &mdash; <code>"+data.error.code+"</code><br />Message &mdash; <code>"+data.error.message+"</code>");
                 }

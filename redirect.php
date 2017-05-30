@@ -31,7 +31,7 @@
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="js/jquery.min.js"></script>
         <script src="js/materialize.min.js"></script>
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- app resources -->
         <link rel="stylesheet" href="css/v0.lt.css">
