@@ -7,11 +7,11 @@ function shorten() {
         $("#shorten-loader").slideDown();
 
         $.ajax("api/shorten.php?create="+link, {
-            success: (data) => {
+            success: (d) => {
                 $("#shorten-loader").slideUp();
                 $("#shorten-finished").slideDown();
 
-                var data = data[0];
+                var data = d[0];
                 if(data.error === null){
                     $("#shorten-finished > p").html("Your short link for <code>"+link+"</code> is ready and can be used with <code>"+data.data.short+"</code>.");
                 } else {
@@ -24,7 +24,7 @@ function shorten() {
                 $("#shorten-finished").slideDown();
                 $("#shorten-finished > p").html("Failed to create short link. <br />An ajax error occurred.");
             }
-        })
+        });
     }
 }
 

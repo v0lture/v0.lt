@@ -51,7 +51,7 @@
 
                 <a href="<?= $resp["data"]["long"]; ?>" class="btn-flat waves-effect waves-light white-text" style="width: 100%;"><i class="material-icons left">arrow_forward</i> Continue</a><br />
                 <p>Continues to the original link used when creating this short link.</p><br />
-                <a href="snapshot.php?id=<?= $resp["data"]["short"]; ?>" class="btn-flat waves-effect waves-light white-text" style="width: 100%;"><i class="material-icons left">pageview</i> View snapshot</a>
+                <a href="snapshot.php?id=<?= $_GET["id"]; ?>" class="btn-flat waves-effect waves-light white-text" style="width: 100%;"><i class="material-icons left">pageview</i> View snapshot</a>
                 <p>Views the snapshot we created when this short link was created, preserving the state of the page from time changes.</p>
             <?php else: ?>
                 <p>An error occurred while handling this short link redirection.<br />Code &mdash; <code><?= $resp["error"]["code"]; ?></code><br />Message &mdash; <code><?= $resp["error"]["message"]; ?></code></p><br />
