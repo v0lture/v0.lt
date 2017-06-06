@@ -8,9 +8,34 @@
 
     // App configs
     $app = Array(
-        // this specifics at what URL generated finished short links are prefixed with
-        "url" => "https://yourdomain.xyz"
+        // this specifies at what URL generated finished short links are prefixed with
+        "url" => "https://yourdomain.xyz",
+        // this specifies what URLs or phrases are not permitted
+        "blacklist-urls" => Array(
+            'https://localhost',
+            'http://localhost'
+        ),
+        // specifies that the HTTP or HTTPS prefix will not be inserted when ommitted
+        "inject-prefix" => true
     )
+
+    // Security configs
+    $security = Array(
+        // Ban non-https links from being shortened
+        "enforce-https": true,
+        // Ban certain links ending with these file extensions from being shortened
+        "blacklist-extensions": Array(
+            'exe',
+            'bin',
+            'zip'
+        )
+    )
+
+    // cleanup
+    $config = Array(
+        'app' => $app,
+        'security' => $security
+    );
     
 
 ?>

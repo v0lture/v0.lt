@@ -10,7 +10,7 @@
     global $dbc;
     global $app;
 
-    $backend = new Backend($app, $dbc);
+    $backend = new Backend($config, $dbc);
     $URL = new URL($backend);
 
     // determine mode

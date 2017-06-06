@@ -13,9 +13,13 @@ function shorten() {
 
                 var data = d[0];
                 if(data.error === null){
-                    $("#shorten-finished > p").html("Your short link for <code>"+link+"</code> is ready.<br /><code>"+data.data.short+"</code>");
+                    $("#shorten-finished > p").html("Your short link for <code>"+link+"</code> is ready.");
+                    $("#shorten-url").attr("value", data.data.short).show();
+                    $("#clipboardcopy").show();
                 } else {
                     $("#shorten-finished > p").html("Failed to create short link. <br />Code &mdash; <code>"+data.error.code+"</code><br />Message &mdash; <code>"+data.error.message+"</code>");
+                    $("#shorten-url").hide();
+                    $("#clipboardcopy").hide();
                 }
 
             },
@@ -33,3 +37,14 @@ function resetShorten() {
     $("#shorten-loader").slideUp();
     $("#shorten-prompt").slideDown();
 }
+
+var clipboard = new Clipboard('#clipboardcopy');
+
+clipboard.on('success', function(e) {
+    Materialize.toast("Shortened URL copied to clipboard", 1000);
+    e.clearSelection();
+});
+
+clipboard.on('error', function(e) {
+    Materialize.toast("Use Ctrl+C/Cmd+C to copy", 1000);
+});

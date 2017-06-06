@@ -5,9 +5,9 @@
     require "php/URL.php";
 
     global $dbc;
-    global $app;
+    global $config;
 
-    $backend = new Backend($app, $dbc);
+    $backend = new Backend($config, $dbc);
     $URL = new URL($backend);
 
     // Handle error
@@ -15,17 +15,6 @@
         $resp = $URL->find($key);
         
         header("Location: redirect.php?id=".$key);
-        break;
-
-        if($resp["data"] == null){
-            // error :(
-            echo "<p>Sadface. An error occurred.<br /><b>Error Code</b> &mdash; <code>".$resp["error"]["code"]."</code><br /><b>Error Message</b> &mdash; <code>".$resp["error"]["message"]."</code></p>";
-            break;
-        }
-
-        // no errors, yay!
-        echo "<p>You will go to <code>".$resp["data"]["long"]."</code>...</p>";
-        header("Location: ".$resp["data"]["long"]);
         break;
     }
 
@@ -42,11 +31,11 @@
         <link rel="stylesheet" href="css/materialize.min.css">
         <script src="js/jquery.min.js"></script>
         <script src="js/materialize.min.js"></script>
+        <script src="js/clipboard.min.js"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
         <!-- app resources -->
         <link rel="stylesheet" href="css/v0.lt.css">
-        <script src="js/v0.lt.js"></script>
     </head>
 
     <body class="container">
@@ -113,10 +102,13 @@
             <div style="display: none;" id="shorten-finished">
 
                 <p>Your shortened link is ready at <code>https://$app["url"]/$data["id"]</code>.</p>
+                <input type="text" id="shorten-url" value="" readonly style="color: white;"></input>
                 <a href="#" onclick="resetShorten();" class="btn-flat waves-effect waves-light white-text">Shorten another</a>
-
+                <a href="#" class="btn-flat waves-effect waves-light white-text" id="clipboardcopy" data-clipboard-target="#shorten-url">Copy link</a>
             </div>
         </div>
+
+        <script src="js/v0.lt.js"></script>
 
     </body>
 

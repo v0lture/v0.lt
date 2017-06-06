@@ -5,9 +5,9 @@
     require "php/URL.php";
 
     global $dbc;
-    global $app;
+    global $config;
 
-    $backend = new Backend($app, $dbc);
+    $backend = new Backend($config, $dbc);
     $URL = new URL($backend);
 
     // Handle error
@@ -21,7 +21,6 @@
 ?>
 
 <!DOCTYPE html>
-
 <html>
 
     <head>

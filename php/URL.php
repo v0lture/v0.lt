@@ -11,21 +11,45 @@
         }
 
         // create short link based on 
-        public function create($link){
+        public function create($link, $snapshot = false){
             // DB check
             if(!$this->dbc){
                 return Array("data" => null, "error" => Array("code" => "absoluteblue", "message" => "A database connection error has occurred"));
             } 
 
             // create ids and submit
-            $lid = str_replace("=", "", base64_encode(substr(hash("sha256", microtime(true)), 0, 10)));
+            $lid = str_replace("=", "", substr(base64_encode(substr(hash("sha256", microtime(true)), 0, 10)), 0, 7));
+
+            // check if url beings with https:// or http://
+            if($this->backend->app["inject-prefix"] == true){
+                if(strpos($link, "http://") === false && strpos($link, "https://") === false){
+                    $link = "https://".$link;
+                }
+            }
+
+            // check if URL has http prefix
+            if($this->backend->security["enforce-https"] == true){
+                if(strpos($link, "http://") !== false){
+                    return Array("data" => null, "error" => Array("code" => "alabamacrimson", "message" => "Passed URL does not match security rule 'enforce-https'"));
+                }
+            }
+
+            // check if URL contains blacklisted URLs/keywords
+            if($this->backend->linkBlacklisted($link) == true) {
+                return Array("data" => null, "error" => Array("code" => "aliceblue", "message" => "Passed URL does not match security rule 'blacklist-urls'"));
+            }
+
+            // check if URL contains blacklisted extensions
+            if($this->backend->extensionBlacklisted($link) == true) {
+                return Array("data" => null, "error" => Array("code" => "alienarmpit", "message" => "Passed URL does not match security rule 'blacklist-extensions'"));
+            }
 
             // check if string
             if(!filter_var($link, FILTER_VALIDATE_URL)) {
                 return Array("data" => null, "error" => Array("code" => "acajou", "message" => "Invalid passed URL"));
             } 
 
-            if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`) VALUES (NULL, '".$this->backend->cleanText($lid)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."')")){
+            if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`, `has-snap`) VALUES (NULL, '".$this->backend->cleanText($lid)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."', 0)")){
                 // success on insert
                 return Array("data" => Array("short" => $this->backend->app["url"]."?".$lid, "long" => $link, "id" => $lid), "error" => null);
             }
@@ -54,7 +78,7 @@
 
             // return results
             while($data = $raw->fetch_assoc()){
-                return Array("data" => Array("long" => $data["long"]), "error" => null);
+                return Array("data" => Array("long" => $data["long"], "has-snap", $data["has-snap"]), "error" => null);
             }
 
         }

@@ -14,7 +14,24 @@
             $dbc = mysqli_connect("localhost", "travis", "", "v0lt");
 
             $app = Array(
-                "url" => "travis://v0.lt/"
+                "app" => Array(
+                    "url" => "travis://v0.lt/",
+                    // this specifies what URLs or phrases are not permitted
+                    "blacklist-urls" => Array(
+                        'https://localhost',
+                        'http://localhost'
+                    ),
+                    // specifies that the HTTP or HTTPS prefix will not be inserted when ommitted
+                    "inject-prefix" => true
+                ),
+                "security" => Array(
+                    "enforce-https" => true,
+                    "blacklist-extensions" => Array(
+                        'exe',
+                        'bin',
+                        'zip'
+                    )
+                )
             );
 
             $backend = new Backend($app, $dbc);
