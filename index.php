@@ -93,10 +93,12 @@
             </div>
 
             <div class="input-field" id="shorten-prompt">
-                <input type="text" id="shortenlink"></input>
-                <label for="shortenlink">Link to shorten</label>
-            
-                <a href="#" onclick="shorten();" class="btn-flat waves-effect waves-light white-text">Shorten!</a>
+                <form action="javascript:shorten();" method="GET">
+                    <input type="text" id="shortenlink"></input>
+                    <label for="shortenlink">Link to shorten</label>
+                
+                    <button type="submit" class="btn-flat waves-effect waves-light white-text">Shorten!</button>
+                </form>
             </div>
 
             <div style="display: none;" id="shorten-finished">

@@ -1,3 +1,5 @@
+/*global Materialize Clipboard */
+/*eslint no-undef: "error"*/
 function shorten() {
     var link = $("#shortenlink").val();
 
@@ -40,11 +42,11 @@ function resetShorten() {
 
 var clipboard = new Clipboard('#clipboardcopy');
 
-clipboard.on('success', function(e) {
+clipboard.on("success", function(e) {
     Materialize.toast("Shortened URL copied to clipboard", 1000);
     e.clearSelection();
 });
 
-clipboard.on('error', function(e) {
+clipboard.on("error", function(e) {
     Materialize.toast("Use Ctrl+C/Cmd+C to copy", 1000);
 });
