@@ -18,6 +18,10 @@
 
     $resp = $URL->find($_GET["id"]);
 
+    if($resp["data"]["has-snap"] == 0){
+        header("Location: ".$resp["data"]["long"]);
+    }
+
 ?>
 
 <!DOCTYPE html>

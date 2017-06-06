@@ -40,7 +40,7 @@ function resetShorten() {
     $("#shorten-prompt").slideDown();
 }
 
-var clipboard = new Clipboard('#clipboardcopy');
+var clipboard = new Clipboard("#clipboardcopy");
 
 clipboard.on("success", function(e) {
     Materialize.toast("Shortened URL copied to clipboard", 1000);

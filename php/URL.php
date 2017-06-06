@@ -49,7 +49,13 @@
                 return Array("data" => null, "error" => Array("code" => "acajou", "message" => "Invalid passed URL"));
             } 
 
-            if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`, `has-snap`) VALUES (NULL, '".$this->backend->cleanText($lid)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."', 0)")){
+            $snap = 0;
+            // check if snapshot
+            if($snapshot == true){
+                $snap = 1;
+            }
+
+            if($this->dbc->query("INSERT INTO `links` (`id`, `short`, `long`, `added`, `has-snap`) VALUES (NULL, '".$this->backend->cleanText($lid)."', '".$this->backend->cleanText($link)."', '".$this->backend->cleanText(microtime(true))."', ".$snap.")")){
                 // success on insert
                 return Array("data" => Array("short" => $this->backend->app["url"]."?".$lid, "long" => $link, "id" => $lid), "error" => null);
             }
@@ -78,7 +84,7 @@
 
             // return results
             while($data = $raw->fetch_assoc()){
-                return Array("data" => Array("long" => $data["long"], "has-snap", $data["has-snap"]), "error" => null);
+                return Array("data" => Array("long" => $data["long"], "has-snap" => $data["has-snap"]), "error" => null);
             }
 
         }
