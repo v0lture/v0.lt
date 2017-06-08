@@ -109,7 +109,7 @@
                 <a href="#" class="btn-flat waves-effect waves-light white-text" id="clipboardcopy" data-clipboard-target="#shorten-url">Copy link</a>
             </div>
         </div>
-
+        <br />
         <div class="center-align">
             <a href="https://github.com/v0lture/v0.lt" class="btn-flat waves-effect waves-light">Source</a>
             <a href="https://v0lture.com/contact.php" class="btn-flat waves-effect waves-light">Contact</a>
