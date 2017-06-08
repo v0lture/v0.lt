@@ -41,6 +41,12 @@
             <p>Snapshots are currently unavailable. Try again later.</p>
         </div>
 
+        <br />
+        <div class="center-align">
+            <a href="https://github.com/v0lture/v0.lt" class="btn-flat waves-effect waves-light">Source</a>
+            <a href="https://v0lture.com/contact.php" class="btn-flat waves-effect waves-light">Contact</a>
+        </div>
+
     </body>
 
 </html>
