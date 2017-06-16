@@ -18,6 +18,7 @@
 
     <head>
         <title>v0.lt</title>
+        <meta name="description" content="v0.lt super charges your URLs.">
 
         <!-- Materialize resources -->
         <link rel="stylesheet" href="css/materialize.min.css">
