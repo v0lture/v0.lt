@@ -111,6 +111,19 @@
         </div>
         <br />
         <div class="center-align">
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+            <!-- v0lt -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-7198469814084348"
+                 data-ad-slot="1764476319"
+                 data-ad-format="auto"></ins>
+            <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>    
+        </div>
+        <br />
+        <div class="center-align">
             <a href="https://github.com/v0lture/v0.lt" class="btn-flat waves-effect waves-light">Source</a>
             <a href="https://v0lture.com/contact.php" class="btn-flat waves-effect waves-light">Contact</a>
         </div>
